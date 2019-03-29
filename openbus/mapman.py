@@ -3,7 +3,7 @@ from collections import Iterable
 TLV_COORD = (32.0853, 34.7818)
 
 class MapMan:    # map manual.
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, point_size=6, line_width=6, **kwargs):
         
         KWARGS_DEFULST = {'location': TLV_COORD, 'zoom_start': 10, 'width': 640, 'height': 480}
         
@@ -19,11 +19,11 @@ class MapMan:    # map manual.
         for arg in args:
                 
             if isinstance(arg[0], Iterable):
-                route = folium.PolyLine(arg, color='#00b08b', weight=2, opacity=.5)
+                route = folium.PolyLine(arg, color='#ff00ff', weight=line_width, opacity=.7)
                 routes.append(route)
                 
             else:
-                point = folium.CircleMarker(arg, radius=1, color='#0080bb', 
+                point = folium.CircleMarker(arg, radius=point_size, color='#0080bb', 
                                             fill_color='#0080bb')
                 points.append(point)
                 
