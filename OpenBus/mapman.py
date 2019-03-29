@@ -1,3 +1,4 @@
+
 import folium
 TLV_COORD = (32.0853, 34.7818)
 
@@ -6,9 +7,9 @@ class MapMan:    # map manual.
         
         KWARGS_DEFULST = {'location': TLV_COORD, 'zoom_start': 10, 'width': 640, 'height': 480}
         
-        for key in kwargs_defults:
+        for key in KWARGS_DEFULST:
             if not key in kwargs:
-                kwargs[key] = kwargs_defults[key]
+                kwargs[key] = KWARGS_DEFULST[key]
         
         self.map = folium.Map(**kwargs)
         
@@ -23,7 +24,7 @@ class MapMan:    # map manual.
                 
             else:
                 route = folium.PolyLine(arg, color='#00b08b', weight=2, opacity=.5)
-                route.append[route]
+                routes.append(route)
                 
         [route.add_to(self.map) for route in routes]
         [point.add_to(self.map) for point in points]
@@ -34,3 +35,4 @@ class MapMan:    # map manual.
     
     def _repr_html_(self):
         return self.map._repr_html_()
+
