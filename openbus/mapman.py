@@ -1,5 +1,5 @@
-
 import folium
+from collections import Iterable
 TLV_COORD = (32.0853, 34.7818)
 
 class MapMan:    # map manual.
@@ -17,14 +17,15 @@ class MapMan:    # map manual.
         routes = []
         
         for arg in args:
-            if (type(arg[0]) == float) or (type(arg[0]) == int):
+                
+            if isinstance(arg[0], Iterable):
+                route = folium.PolyLine(arg, color='#00b08b', weight=2, opacity=.5)
+                routes.append(route)
+                
+            else:
                 point = folium.CircleMarker(arg, radius=1, color='#0080bb', 
                                             fill_color='#0080bb')
                 points.append(point)
-                
-            else:
-                route = folium.PolyLine(arg, color='#00b08b', weight=2, opacity=.5)
-                routes.append(route)
                 
         [route.add_to(self.map) for route in routes]
         [point.add_to(self.map) for point in points]
